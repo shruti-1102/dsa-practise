@@ -42,23 +42,6 @@ public class arrays {
         }
         return nums[high];
     }
-
-    public static boolean findTarget (int nums[], int target) {
-        int low = 0;
-        int high = nums.length-1;
-        while (low <= high) {
-            int mid = (low + high)/2;
-            if (nums[mid] == target) {
-                return true;
-            }
-            if (nums[mid] > target) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
-            }
-        }
-        return false;
-    }
     public static void main (String[] args) {
         //using basic binary search
         // int nums[] = {-5, -2, 0, 3, 4, 7, 10};
@@ -67,9 +50,7 @@ public class arrays {
 
         //finding the minimum element in the rotated sorted array
         int nums[] = {4, 5, 6, 7, 0, 1, 2};
-        int target = 4;
         // System.out.println(minInArray(nums));
-        // System.out.println(maxInArray(nums));
-        System.out.println(findTarget(nums, target));
+        System.out.println(maxInArray(nums));
     }
 }
