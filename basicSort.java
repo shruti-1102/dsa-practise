@@ -32,6 +32,34 @@ public class basicSort {
             }
         }
     }
+
+    public static void selectionSort(int nums[]) {
+        for (int i = 0; i<nums.length-1; i++) {
+            int minPos = i;
+            for (int j = i+1; j<nums.length; j++) {
+                if (nums[minPos] > nums[j]) {
+                    minPos = j;
+                }
+            }
+            int temp = nums[minPos];
+            nums[minPos] = nums[i];
+            nums[i] = temp;
+        }
+    }
+
+    public static void reversedSelectionSort(int num[]) {
+        for (int i = 0; i<num.length-1; i++) {
+            int minPos = i;
+            for (int j = i+1; j<num.length; j++) {
+                if (num[minPos] < num[j]) {
+                    minPos = j;
+                }
+            }
+            int temp = num[minPos];
+            num[minPos] = num[i];
+            num[i] = temp;
+        }
+    }
     public static void main (String[] args) {
         int nums[] = {5, 4, 1, 3, 2};
         bubbleSort(nums);
@@ -40,5 +68,11 @@ public class basicSort {
         int num[] = {4, 1, 6, 2, 3};
         reverseBubbleSort(num);
         printArr(num);
+
+        selectionSort(nums);
+        printArr(nums);
+
+        reversedSelectionSort(nums);
+        printArr(nums);
     }
 }
