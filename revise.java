@@ -109,6 +109,74 @@ public class revise {
     
         return trappedWater;
     }
+
+    public static int binSerRotArr(int arr[], int tar) {
+        int st = 0;
+        int end = arr.length-1;
+        while (st <= end) {
+            int mid = st + (end - st)/2;
+            if (arr[mid] == tar) {
+                return mid;
+            }
+            if (arr[st] <= arr[mid]) { //left sorted
+                if (arr[st] <= tar && tar <= arr[mid]) {
+                    end = mid - 1;
+                } else {
+                    st = mid + 1;
+                }
+            } else { //right sorted
+                if (arr[mid] <= tar && tar <= arr[end]) {
+                    st = mid + 1;
+                } else {
+                    end = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static int buySellStocks(int arr[]) {
+        int buyPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (int i = 0; i<arr.length; i++) {
+            int currPrice = arr[i];
+            if (buyPrice < currPrice) {
+                int profit = currPrice - buyPrice;
+                maxProfit = Math.max(profit, maxProfit);
+            } else {
+                buyPrice = currPrice;
+            }
+        }
+        return maxProfit;
+    }
+
+    public static void bubbleSort(int arr[]) {
+        for (int i = 0; i< arr.length; i++) {
+            for (int j = 0; j<arr.length-1-i; j++) {
+                if (arr[j] > arr[j+1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+            printArr(arr);
+        }
+    }
+
+    public static void selectionSort(int arr[]) {
+        for (int i = 0; i<arr.length-1; i++) {
+            int minPos = i;
+            for (int j = i+1; j<arr.length; j++) {
+                if (arr[minPos] > arr[j]) {
+                    minPos = j;
+                }
+            }
+            int temp = arr[i];
+            arr[i] = arr[minPos];
+            arr[minPos] = temp;
+            printArr(arr);
+        }
+    }
     
 
     public static void printArr(int arr[]) {
@@ -161,5 +229,26 @@ public class revise {
         //TRAPPING RAINWATER
         int arr8[] = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
         System.out.println(trappingRainwater(arr8));
+        System.out.println();
+
+        //BINARY SEARCH IN ROTATED SORTED ARRAY
+        int arr9[] = {4,5,6,7,0,1,2};
+        int tar4 = 0;
+        System.out.println(binSerRotArr(arr9, tar4));
+        System.out.println();
+
+        //BUY AND SELL STOCKS PROBLEM
+        int arr10[] = {7, 1, 5, 3, 6, 4};
+        System.out.println(buySellStocks(arr10));
+        System.out.println();
+
+        //BUBBLE SORT
+        int arr11[] = {5, 1, 4, 2, 8};
+        bubbleSort(arr11);
+        System.out.println();
+
+        //SELECTION SORT
+        int arr12[] = {64, 25, 12, 22, 11};
+        selectionSort(arr12);
     }
 }
