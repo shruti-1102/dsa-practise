@@ -11,12 +11,35 @@ public class revise2 {
                 }
             }
         }
-        printarr(arr);
+        // printarr(arr);
     }
-    public static void printarr(int arr[]) {
-        for (int i = 0; i<arr.length; i++) {
-            System.out.println(arr[i]);
+
+    public static void selectionSort(int arr[]) {
+        int swap = 0;
+        for (int i = 0; i < arr.length - 1; i++) {
+            int minInd = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minInd]) {
+                    minInd = j;
+                }
+            }
+            if (minInd != i) {
+                int temp = arr[i];
+                arr[i] = arr[minInd];
+                arr[minInd] = temp;
+                swap++;
+            }
         }
+        System.out.println();
+        printarr(arr, swap);
+    }
+
+    public static void printarr(int arr[], int swap) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        System.out.println("Total swaps: " + swap);
     }
 
     public static void main(String args[]) {
@@ -25,9 +48,12 @@ public class revise2 {
         int n = sc.nextInt();
         int arr[] = new int[n];
         System.out.println("Enter the numbers in your array: ");
-        for (int i = 0; i<n; i++) {
+        for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
-        bubbleSort(arr);
+        // bubbleSort(arr);
+        selectionSort(arr);
+
+        sc.close();
     }
 }
